@@ -48,3 +48,16 @@ function updateTodo($dados){
     header('Location: /Todo/');
 
 }
+
+function deleteTodo($id){
+    global $conn;
+    $sql = 'DELETE from todo WHERE id = :id';
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    header('Location: /Todo/');
+}
+function query($sql) {
+    global $conn;
+    $stmt = $conn->prepare($sql);
+}

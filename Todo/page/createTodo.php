@@ -8,7 +8,7 @@
             </div>
             <div>
                 <label>Descrição:</label>
-                <input id="description" name="description" placeholder="Escreva a descrição da tarefa">
+                <textarea id="description" name="description" placeholder="Escreva a descrição da tarefa"></textarea>
             </div>
             <button>criar tarefá</button>
         </fieldset>

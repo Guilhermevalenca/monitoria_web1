@@ -4,4 +4,11 @@ function execute() {
     h1.textContent = 'Seja bem vindo a nossa pagina';
 
     div.appendChild(h1);
+
+    const buttonExecute = document.querySelector('#buttonExecute');
+    buttonExecute.remove();
+}
+
+function getList() {
+    fetch('')
 }

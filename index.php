@@ -15,7 +15,7 @@
             .then(response => response.text())
             .then(html => {
                 document.querySelector('#app').innerHTML = html;
-            })
+            });
     </script>
 </body>
 </html>

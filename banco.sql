@@ -12,6 +12,6 @@ CREATE TABLE if not exists `user`(
 CREATE TABLE if not exists `todo`(
     `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `title` VARCHAR(255) NOT NULL,
-    `description` VARCHAR(255) NOT NULL,
+    `description` TEXT NOT NULL,
     `status` ENUM('Feito', 'Em andamento', 'Não feito') NOT NULL DEFAULT ('Não feito')
 );

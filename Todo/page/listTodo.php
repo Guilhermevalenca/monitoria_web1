@@ -20,13 +20,13 @@
                         <a href="page/editTodo.php?id=<?= $todo['id'] ?>">editar</a>
                     </td>
                     <td>
-                        <a href="page/editTodo.php?id=<?= $todo['id'] ?>">deletar</a>
+                        <a href="page/deleteTodo.php?id=<?= $todo['id'] ?>">deletar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
-        <button onclick="execute()">execute</button>
+        <button id="buttonExecute" onclick="execute()">execute</button>
         <div id="showMessage"></div>
     </fieldset>
     <?php
