@@ -1,0 +1,14 @@
+#app {
+    display: grid;
+    justify-content: center;
+    margin: 40px;
+}
+.fieldset {
+    width: 450px;
+    display: flex;
+    justify-content: center;
+}
+header {
+    display: grid;
+    justify-content: center;
+}

@@ -1,13 +1,12 @@
 <?php
 
-$host = 'localhost';
-$port = '3306';
-$username = 'gui';
-$password = 'rock1109';
+require 'Database.php';
 
-$sql = file_get_contents('banco.sql');
+$db = new Database();
 
-$pdo = new PDO("mysql:host=$host;port=$port", $username, $password);
+$query = file_get_contents('banco.sql');
 
-$result = $pdo->exec($sql);
+
+$result = $db->createDatabase($query);
+
 var_dump($result);

@@ -1,19 +1,49 @@
 <?php
-
 class Database
 {
     private $host = 'localhost';
     private $port = '3306';
     private $username = 'gui';
     private $password = 'rock1109';
-    private $database = 'monitoria';
+    private $dbname = 'monitoria';
     protected $conn;
-    public function __constructor()
+    public $table;
+
+    public function __construct()
     {
-        $this->setConnection();
+        $this->connection();
     }
-    public function setConnection()
+
+    public function connection()
     {
-        $this->conn = new PDO("mysql:host=$this->host;port=$$this->port;dbname=$this->database", $this->username, $this->password);
+        $dsn = 'mysql:host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->dbname;
+        $this->conn = new PDO($dsn, $this->username, $this->password);
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+
+    public function createDatabase($query)
+    {
+        $dsn = 'mysql:host=' . $this->host . ';port=' . $this->port;
+        $this->conn = new PDO($dsn, $this->username, $this->password);
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute();
+    }
+
+    public function select()
+    {
+        $sql = 'SELECT * FROM ' . $this->table;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
     }
 }

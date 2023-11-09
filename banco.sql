@@ -1,17 +1,16 @@
-CREATE DATABASE if not exists `monitoria`;
+CREATE DATABASE IF NOT EXISTS monitoria;
 
 use monitoria;
 
-CREATE TABLE if not exists `user`(
-    `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE IF NOT EXISTS `user`(
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL
 );
-
-CREATE TABLE if not exists `todo`(
-    `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+CREATE TABLE IF NOT EXISTS `todo` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
     `title` VARCHAR(255) NOT NULL,
     `description` TEXT NOT NULL,
-    `status` ENUM('Feito', 'Em andamento', 'Não feito') NOT NULL DEFAULT ('Não feito')
+    `status` BOOLEAN DEFAULT(0)
 );
