@@ -8,18 +8,25 @@ use models\TodoModel;
 
 class TodoController extends Controller
 {
+    private $auth;
     public function __construct()
     {
         parent::__construct();
         $this->model = new TodoModel();
+        $this->auth = new AuthenticationController();
     }
 
     public function index()
     {
-        $data = $this->model->select();
-        echo $this->blade->render('todo/home', [
-            'data' => $data
-        ]);
+        if($this->auth->verifyAuthenticated()) {
+            $data = $this->model->select();
+            echo $this->blade->render('todo/home', [
+                'data' => $data
+            ]);
+        } else {
+            \Flight::redirect('/');
+        }
+
     }
     public function create()
     {

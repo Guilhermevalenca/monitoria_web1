@@ -14,10 +14,11 @@ class TodoModel extends Model
     public function add($data)
     {
         try {
-            $sql = 'INSERT INTO ' . $this->table . '(title, description)' . ' VALUES(:title, :description)';
+            $sql = 'INSERT INTO ' . $this->table . '(title, description, user_id)' . ' VALUES(:title, :description, :user_id)';
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':title', $data['title']);
             $stmt->bindParam(':description', $data['description']);
+            $stmt->bindParam(':user_id', $_SESSION['user']['id']);
             $stmt->execute();
             return ['success' => true];
         } catch (\PDOException $e) {

@@ -13,5 +13,7 @@ CREATE TABLE if not exists `todo`(
     `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `description` TEXT NOT NULL,
-    `status` TINYINT(1) DEFAULT (0) NOT NULL
+    `status` TINYINT(1) DEFAULT (0) NOT NULL,
+    `user_id` INT NOT NULL,
+    FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 );
