@@ -7,12 +7,10 @@ use models\UserModel;
 
 class UserController extends Controller
 {
-    private $auth;
     public function __construct()
     {
         parent::__construct();
         $this->model = new UserModel();
-        $this->auth = new AuthenticationController();
     }
     public function create()
     {
@@ -23,7 +21,7 @@ class UserController extends Controller
         $data = [
             'name' => $_POST['name'],
             'email' => $_POST['email'],
-            'password' => $this->auth->crypt($_POST['password'])
+            'password' => $this->crypt($_POST['password'])
         ];
         $result = $this->model->add($data);
         if($result['success']) {

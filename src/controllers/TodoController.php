@@ -18,7 +18,7 @@ class TodoController extends Controller
 
     public function index()
     {
-        if($this->auth->verifyAuthenticated()) {
+        if($this->verifyAuthenticated()) {
             $data = $this->model->select();
             echo $this->blade->render('todo/home', [
                 'data' => $data
@@ -30,12 +30,18 @@ class TodoController extends Controller
     }
     public function create()
     {
-        echo $this->blade->render('todo/create');
+        if($this->verifyAbilities('adm')) {
+            echo $this->blade->render('todo/create');
+        } else {
+            \Flight::redirect('/todo');
+        }
     }
     public function store()
     {
-        $data = $_POST;
-        $this->model->add($data);
+        if($this->verifyAbilities('adm')) {
+            $data = $_POST;
+            $this->model->add($data);
+        }
         \Flight::redirect('/todo');
     }
     public function destroy($id)
